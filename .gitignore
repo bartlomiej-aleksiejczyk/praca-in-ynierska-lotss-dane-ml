@@ -1,5 +1,9 @@
 **
 
-# But not these files...
 !.gitignore
-!**/*.R
+!task*/
+taks*/*
+!task*/scripts/
+!task*/scripts/*
+.Rproj.user
+!README.md
