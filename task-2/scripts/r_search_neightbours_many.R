@@ -51,5 +51,7 @@ not_null_results <- filter(gaia_many_results_tibble, ((closest_neightbours_id))!
 #po przefiltrowaniu pokazuje ze  101555 jest rekordow posaidajacych co najmniej jednego sasiada bliszego niz 1/30 z czego
 csv_results_many <- head(gaia_many_results_tibble, 10000)
 lotss_neightbours_many_result <- cbind(appended_dates_df,closest_neightbours_id,closest_neightbours_dist_sec)
-write_tsv(csv_results_many,file='~/Documents/inżynierka/task-2/data/many_neightbours.csv')
-
+write_csv(csv_results_many,file='many_neightbours1.csv')
+library(data.table)
+not_null_results_10000 <- head(not_null_results, 10000)
+fwrite(not_null_results_10000, file ="many_neightbours1.csv")

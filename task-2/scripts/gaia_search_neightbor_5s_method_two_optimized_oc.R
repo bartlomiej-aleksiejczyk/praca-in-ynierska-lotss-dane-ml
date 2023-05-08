@@ -7,8 +7,7 @@ date_lotss <- function(a, b,c)
 len_lotss <- nrow(appended_dates_df)
 len_gaia <- nrow(gaia_all_fixed_px)
 #Tworzy puste kolumny na rezultaty
-close_neightbours <- vector("character",len_lotss)
-closest_neightbour_id<- vector("character",len_lotss)
+closest_neightbour_id<- vector("numeric",len_lotss)
 closest_neightbour_ra<- vector("numeric",len_lotss)
 closest_neightbour_dec<- vector("numeric",len_lotss)
 closest_neightbour_dist_sec<- vector("numeric",len_lotss)
@@ -32,7 +31,7 @@ for (lotss_num in(1:len_lotss))
     if(length(index)>0)
     {
       
-      closest_neightbours_id <- gaia_all_fixed_px[index,"source_id"]
+      closest_neightbour_id[lotss_num] <- gaia_all_fixed_px[index,"source_id"]
       closest_neightbour_ra[lotss_num] <- gaia_all_fixed_px[index,"ra"]
       closest_neightbour_dec[lotss_num] <- gaia_all_fixed_px[index,"dec"]
       #Dystans w sekundach?
@@ -43,4 +42,4 @@ for (lotss_num in(1:len_lotss))
 #łączy kolumny z dataframe
 lotss_neightbour_results_nearest <- cbind(appended_dates_df,closest_neightbour_id,closest_neightbour_ra,closest_neightbour_dec,closest_neightbour_dist_sec)
 csv_results_nearest <- head(lotss_neightbour_results_nearest, 10000)
-write.csv(csv_results_nearest,file='~/Documents/inżynierka/task-2/data/nearest_neightbours.csv')
+write.csv(csv_results_nearest,file='~/Documents/inżynierka/task-2/data/nearest_neightbours_newest_many.csv')
