@@ -3,6 +3,7 @@
 !.gitignore
 !task*/
 taks*/*
+!task*/test*
 !task*/scripts/
 !task*/scripts/*
 .Rproj.user
