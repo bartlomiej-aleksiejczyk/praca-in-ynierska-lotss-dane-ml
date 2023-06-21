@@ -25,16 +25,15 @@ for (lotss_num in(1:len_lotss))
   #obiekt z kataogu gaia, przekonwertowany na lotss, kolejno ra i dec
   ra_gaia_to_lotss<-date_lotss(gaia_all_fixed_px[,"ra"], lotss_date, gaia_all_fixed_px[,"pmra"])
   dec_gaia_to_lotss<-date_lotss(gaia_all_fixed_px[,"dec"], lotss_date, gaia_all_fixed_px[,"pmdec"])
-  lotss_dist <- sqrt((((((ra_gaia_to_lotss-lotss_obj_ra)*cos(((dec_gaia_to_lotss*(pi))/180)))^2)+(dec_gaia_to_lotss-lots_obj_dec)^2)))
+  lotss_dist <- sqrt((((((ra_gaia_to_lotss-lotss_obj_ra)*cos(((dec_gaia_to_lotss*(pi))/180)))^2)+(dec_gaia_to_lotss-lots_obj_dec)^2)))*3600
   #zgodnie z czym było powiedziane mniejsza odległość od 120 stopni czyli 120/3600
-  index=c(which(lotss_dist<1/30))
-  
+  index=c(which(lotss_dist<(120)))
   #tworzy nową kolumny, które później będą dołączone do dataframe
-
   if(length(index)>0)
   {
-    closest_neightbours_id[lotss_num] <- (list(c(gaia_all_fixed_px[(index),"source_id"])))
-    closest_neightbours_dist_sec[lotss_num] <- (list(lotss_dist[index]))
+  
+    closest_neightbours_id[lotss_num] <- (list((gaia_all_fixed_px[(index),"source_id"])))
+    closest_neightbours_dist_sec[lotss_num] <- ((list(lotss_dist[index, 1])))
     
     #Dystans w sekundach?
 
